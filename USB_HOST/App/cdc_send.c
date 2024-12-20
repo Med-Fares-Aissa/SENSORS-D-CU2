@@ -27,7 +27,7 @@ extern USBH_HandleTypeDef hUsbHostFS;
 /* Private functions ---------------------------------------------------------*/
 /* Exported functions prototypes ---------------------------------------------*/
 /* Private defines -----------------------------------------------------------*/
-uint8_t CDC_TX_Buffer[] = "USB_STM32_Host_CDC_ACM \n";
+uint8_t CDC_TX_Buffer[] = "MSG from Host CDC\n";
 /**
   * @brief  CDC Send Data.
   * @param  None

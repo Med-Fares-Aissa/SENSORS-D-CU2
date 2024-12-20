@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<workspace>
+  <project>
+    <path>$WS_DIR$\USB_Device_CDC_UART.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>Build_All</name>
+      <member>
+        <project>USB_Device_CDC_UART</project>
+        <configuration>STM32746G-DISCOVERY_USBD-FS</configuration>
+      </member>
+      <member>
+        <project>USB_Device_CDC_UART</project>
+        <configuration>STM32746G-DISCOVERY_USBD-HS</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

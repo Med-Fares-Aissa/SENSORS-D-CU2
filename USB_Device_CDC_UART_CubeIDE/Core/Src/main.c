@@ -18,6 +18,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "cmsis_os.h"
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
@@ -30,6 +31,7 @@ static void MPU_Config(void);
 static void SystemClock_Config(void);
 static void Error_Handler(void);
 static void CPU_CACHE_Enable(void);
+void StartDefaultTask(void const * argument);
 
 /* Private functions ---------------------------------------------------------*/
 
@@ -57,6 +59,29 @@ int main(void)
   /* Configure the System clock to have a frequency of 216 MHz */
   SystemClock_Config();
 
+  osThreadDef(defaultTaskHand, StartDefaultTask, osPriorityHigh, 0, 4096);
+  osThreadCreate(osThread(defaultTaskHand), NULL);
+
+  /* Start scheduler */
+  osKernelStart();
+  /* Run Application (Interrupt mode) */
+  while (1)
+  {
+  }
+}
+
+
+
+/* USER CODE BEGIN Header_StartDefaultTask */
+/**
+  * @brief  Function implementing the defaultTaskHand thread.
+  * @param  argument: Not used
+  * @retval None
+  */
+/* USER CODE END Header_StartDefaultTask */
+void StartDefaultTask(void const * argument)
+{
+  /* USER CODE BEGIN 5 */
   /* Init Device Library */
   USBD_Init(&USBD_Device, &VCP_Desc, 0);
 
@@ -69,10 +94,13 @@ int main(void)
   /* Start Device Process */
   USBD_Start(&USBD_Device);
 
-  /* Run Application (Interrupt mode) */
-  while (1)
+  /* Infinite loop */
+
+  for (;;)
   {
+	  osDelay(1);
   }
+  /* USER CODE END 5 */
 }
 
 /**

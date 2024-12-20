@@ -220,6 +220,13 @@ static int8_t CDC_Itf_Control (uint8_t cmd, uint8_t* pbuf, uint16_t length)
   */
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
+  if (htim->Instance == TIM6)
+  {
+    HAL_IncTick();
+  }
+
+  if (htim->Instance == TIM3)
+  {
   uint32_t buffptr;
   uint32_t buffsize;
 
@@ -246,6 +253,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
         UserTxBufPtrOut = 0;
       }
     }
+  }
   }
 }
 
